@@ -1,0 +1,86 @@
+html {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  font-family: system-ui;
+  font-size: 4rem;
+}
+
+button {
+  font: inherit;
+  padding: 0.75em 3em;
+  background: hsl(185, 53%, 15%);
+  border: 0.1em solid hsl(185, 53%, 34%);
+  border-radius: 100vw;
+  cursor: pointer;
+  transition: background-color 250ms;
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+button:hover,
+button:focus-visible {
+  background: hsl(185, 53%, 34%);
+}
+
+button > span {
+  position: absolute;
+  z-index: -1;
+  width: 33.333%;
+  height: 100%;
+
+  background: transparent;
+  opacity: 0.5;
+}
+
+button > :first-child {
+  left: 0;
+  top: 0;
+}
+
+button > :last-child {
+  right: 0;
+  top: 0;
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: hsl(200 60% 20%);
+  /* background: hotpink; */
+  width: 10%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  inset: 0;
+  margin: auto;
+  opacity: 0;
+
+  transition: transform 1000ms 200ms, opacity 200ms;
+}
+
+button:active::before {
+  transform: scale(20);
+  opacity: 1;
+
+  transition: transform 1000ms, opacity 500ms;
+}
+
+button:has(:first-child:active)::before {
+  margin-left: 0;
+}
+
+button:has(:last-child:active)::before {
+  margin-right: 0;
+}
+
+button:has(:first-child:active)::before,
+button:has(:last-child:active)::before {
+  transition: transform 500ms, opacity 250ms;
+}
